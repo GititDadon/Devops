@@ -182,7 +182,7 @@
   .loginbox{
       width:550px;
       height:550px;
-      margin: 150px;
+      margin: 100px;
   
   }
   .textbox{
@@ -281,8 +281,8 @@
     margin:150px 150px;
     font-size: 50px;
     color:#d3d3d3;
-    box-shadow: 0 0 20px 0 #d3d3d3,
-    0 0 20px 0 #d3d3d3 , 0 0 20px 0 #d3d3d3 inset;
+    box-shadow: 0 0 200px 0 rgb(212, 221, 221),
+    0 0 200px 0 aquamarine , 0 0 10px 0 aquamarine inset;
     font-family:Georgia, 'Times New Roman', Times, serif;
     animation: slideIn 2s ease-in-out forwards;
 
@@ -294,7 +294,15 @@
   th, td {
     padding: 28px;
     text-align: left;
-    border-bottom: 1px solid #ddd;
-    box-shadow: 0 0 2px 0 #d3d3d3,
-    0 0 10px 0 #d3d3d3 , 0 0 10px 0 #d3d3d3 inset;
+    border-bottom: 1px solid aqua;
+    box-shadow: 0 0 2px 0 aqua,
+    0 0 10px 0 aquamarine , 0 0 10px 0 aquamarine inset;
   }
+  table:hover{
+    box-shadow: 0 0 120px 0 #d3d3d3,
+    0 0 130px 0 aquamarine , 0 0 20px 0 aquamarine inset;
+  }
+  td:hover{
+    color:aqua;
+  }
+  

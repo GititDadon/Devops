@@ -11,7 +11,6 @@ app.use(express.static('public'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-// app.use('/', routes);
 
 app.get('/', (req, res) => {
     res.sendFile(path.join(__dirname, '../public/register.html'));
@@ -24,9 +23,7 @@ app.get('/register', (req, res) => {
 app.get('/register.css', (req, res) => {
   res.sendFile(path.join(__dirname, '../public/register.css'));
 });
-// app.get('/home', (req, res) => {
-//     res.sendFile(path.join(__dirname, '../public/home.html'));
-//   });
+
   
 // Route for registering a new user
 app.post('/register', async (req, res) => {
@@ -50,9 +47,9 @@ app.post('/register', async (req, res) => {
 app.get('/api/grades', async (req, res) => {
   try {
     // Retrieve the grades from the database
-    const user = await User.findOne({ /* Add conditions if needed */ })
-    .sort({ createdAt: -1 }) // Sort by creation timestamp in descending order
-      .limit(1); // Retrieve only the most recent document
+    const user = await User.findOne({  })
+    .sort({ createdAt: -1 }) 
+      .limit(1); 
     ;
     
     // Check if the user and grades exist
