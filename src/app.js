@@ -13,10 +13,6 @@ app.use(express.urlencoded({ extended: true }));
 
 // app.use('/', routes);
 
-app.get('/', (req, res) => {
-  res.sendFile(path.join(__dirname, '../public/Homepage.html'));
-});
-
 
 app.get('/register', (req, res) => {
   res.sendFile(path.join(__dirname, '../public/register.html'));
@@ -25,9 +21,9 @@ app.get('/register', (req, res) => {
 app.get('/register.css', (req, res) => {
   res.sendFile(path.join(__dirname, '../public/register.css'));
 });
-app.get('/home', (req, res) => {
-    res.sendFile(path.join(__dirname, '../public/home.html'));
-  });
+// app.get('/home', (req, res) => {
+//     res.sendFile(path.join(__dirname, '../public/home.html'));
+//   });
   
 // Route for registering a new user
 app.post('/register', async (req, res) => {
@@ -44,7 +40,7 @@ app.post('/register', async (req, res) => {
     });
 
     res.status(201).json({ success: true, data: newUser });
-    res.redirect('/home');
+   // res.redirect('/home');
   } catch (err) {
     res.status(400).json({ success: false, error: err.message });
   }
