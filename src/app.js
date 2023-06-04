@@ -26,7 +26,10 @@ app.get('/register', (req, res) => {
 app.get('/register.css', (req, res) => {
   res.sendFile(path.join(__dirname, '../pages/register.css'));
 });
-
+app.get('/home', (req, res) => {
+    res.sendFile(path.join(__dirname, '../pages/home.html'));
+  });
+  
 // Route for registering a new user
 app.post('/register', async (req, res) => {
   const { name, id, grade1,grade2,grade3 } = req.body;
