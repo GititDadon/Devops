@@ -23,6 +23,9 @@ app.get('/register', (req, res) => {
 app.get('/register.css', (req, res) => {
   res.sendFile(path.join(__dirname, '../public/register.css'));
 });
+app.get('/home.css', (req, res) => {
+  res.sendFile(path.join(__dirname, '../public/home.css'));
+});
 
   
 // Route for registering a new user
