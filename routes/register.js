@@ -21,7 +21,7 @@ router.post('/', async function (req, res, next) {
       success: true,
       data: newUser
     });
-    res.redirect('/login');
+    res.redirect('/home');
   } catch (err) {
     res.status(400).json({ success: false, error: err.message });
   }
