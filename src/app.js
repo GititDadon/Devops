@@ -1,52 +1,52 @@
-var createError = require('http-errors');
-var express = require('express');
-var path = require('path');
-var logger = require('morgan');
-var expressLayouts = require('express-ejs-layouts');
+const express = require('express');
+const mongoose = require('mongoose');
+const path = require('path');
+const User = require('../models/user');
 
-var indexRouter = require('../routes/index');
-
-var registerRouter = require('../routes/register');
-
-var app = express();
+const port = process.env.PORT || 3000;
+const app = express();
 
 require('../src/db');
 
-// view engine setup
-app.set('views', path.join(__dirname, 'views'));
-app.set('view engine', 'ejs');
-
-app.get('/')
-app.use(logger('dev'));
+app.use(express.static('public'));
 app.use(express.json());
-app.use(express.urlencoded({ extended: false }));
-app.use(expressLayouts);
-app.use(express.static(path.join(__dirname, 'public')));
+app.use(express.urlencoded({ extended: true }));
 
-// app.use('/', indexRouter);
-// app.use('/register', registerRouter);
+// app.use('/', routes);
 
-app.get('/register', function (req, res, next) {
+app.get('/', (req, res) => {
+  res.sendFile(path.join(__dirname, '../pages/Homepage.html'));
+});
 
-    res.render('register', {
-      layout: true,
-      page: 'register'
+
+app.get('/register', (req, res) => {
+  res.sendFile(path.join(__dirname, '../pages/register.html'));
+});
+
+app.get('/register.css', (req, res) => {
+  res.sendFile(path.join(__dirname, '../pages/register.css'));
+});
+
+// Route for registering a new user
+app.post('/register', async (req, res) => {
+  const { name, id, grade1,grade2,grade3 } = req.body;
+
+  try {
+    const newUser = await User.create({
+     name,
+     id,
+     grade1,
+     grade2,
+     grade3,
+      level: 'starter',
     });
-  });
-// catch 404 and forward to error handler
-app.use(function (req, res, next) {
-  next(createError(404));
+
+    res.status(201).json({ success: true, data: newUser });
+    res.redirect('/home');
+  } catch (err) {
+    res.status(400).json({ success: false, error: err.message });
+  }
 });
 
-// error handler
-app.use(function (err, req, res, next) {
-  // set locals, only providing error in development
-  res.locals.message = err.message;
-  res.locals.error = req.app.get('env') === 'development' ? err : {};
-
-  // render the error page
-  res.status(err.status || 500);
-  res.render('error');
-});
 
 module.exports = app;
