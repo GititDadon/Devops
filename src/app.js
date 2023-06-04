@@ -3,6 +3,10 @@ const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 
 const app = express();
+
+app.set('views', path.join(__dirname, 'public'));
+app.set('view engine', 'ejs');
+
 // Connect to MongoDB
 mongoose.connect('mongodb+srv://tairmazuz19:0532217639@nosecl.evkn28f.mongodb.net/', { useNewUrlParser: true, useUnifiedTopology: true })
   .then(() => console.log('Connected to MongoDB'))
