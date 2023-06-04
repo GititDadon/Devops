@@ -50,7 +50,10 @@ app.post('/register', async (req, res) => {
 app.get('/api/grades', async (req, res) => {
   try {
     // Retrieve the grades from the database
-    const user = await User.findOne({ /* Add conditions if needed */ });
+    const user = await User.findOne({ /* Add conditions if needed */ })
+    .sort({ createdAt: -1 }) // Sort by creation timestamp in descending order
+      .limit(1); // Retrieve only the most recent document
+    ;
     
     // Check if the user and grades exist
     if (!user || !user.grade1 || !user.grade2 || !user.grade3) {
