@@ -2,10 +2,10 @@ const express = require('express');
 const path = require('path');
 const User = require('../models/user');
 
-const port = process.env.PORT || 3000;
 const app = express();
 
 require('../src/db');
+const port = process.env.PORT || 3000;
 
 app.use(express.static('public'));
 app.use(express.json());
@@ -48,6 +48,7 @@ app.post('/register', async (req, res) => {
     res.status(400).json({ success: false, error: err.message });
   }
 });
-
+app.listen(port, () => {
+    console.log(`Listening on port ${port}`);})
 
 module.exports = app;
