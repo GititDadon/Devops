@@ -1,5 +1,4 @@
 const express = require('express');
-const mongoose = require('mongoose');
 const path = require('path');
 const User = require('../models/user');
 
@@ -15,19 +14,19 @@ app.use(express.urlencoded({ extended: true }));
 // app.use('/', routes);
 
 app.get('/', (req, res) => {
-  res.sendFile(path.join(__dirname, '../pages/Homepage.html'));
+  res.sendFile(path.join(__dirname, '../public/Homepage.html'));
 });
 
 
 app.get('/register', (req, res) => {
-  res.sendFile(path.join(__dirname, '../pages/register.html'));
+  res.sendFile(path.join(__dirname, '../public/register.html'));
 });
 
 app.get('/register.css', (req, res) => {
-  res.sendFile(path.join(__dirname, '../pages/register.css'));
+  res.sendFile(path.join(__dirname, '../public/register.css'));
 });
 app.get('/home', (req, res) => {
-    res.sendFile(path.join(__dirname, '../pages/home.html'));
+    res.sendFile(path.join(__dirname, '../public/home.html'));
   });
   
 // Route for registering a new user
