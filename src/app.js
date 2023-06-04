@@ -1,11 +1,13 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
+var path = require('path');
 
 const app = express();
 
 app.set('views', path.join(__dirname, 'public'));
 app.set('view engine', 'ejs');
+app.use(express.static(path.join(__dirname, 'public')));
 
 // Connect to MongoDB
 mongoose.connect('mongodb+srv://tairmazuz19:0532217639@nosecl.evkn28f.mongodb.net/', { useNewUrlParser: true, useUnifiedTopology: true })
