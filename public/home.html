@@ -2,65 +2,62 @@
 <html>
 <head>
     <title>Grades</title>
-    <link rel="stylesheet" href="register.css">
+    <link rel="stylesheet" href="home.css">
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=width-device" initial-scale="1">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Bungee+Spice&family=Dancing+Script:wght@700&family=Montserrat&family=Petit+Formal+Script&family=Poppins:wght@800&family=Satisfy&display=swap" rel="stylesheet">    
-    <script src="https://cdn.jsdelivr.net/npm/pg@8.7.1/dist/pg.min.js"></script>
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-
-  
 </head>
 <body>
     <div class="bg-img">
-        <nav>    
+        <div class="bg-overlay"></div>
+        <nav>
             <div class="logo">
                 <span><h1><span>Devops</span></h1></span>             
-            </div>    
+            </div>
         </nav>
         <hr>
-        <h1>Grades</h1>
-        <table id="grades-table">
-            <tr>
-                <th>Subject</th>
-                <th>Grade</th>
-            </tr>
-            <tr>
-                <td>Subject 1</td>
-                <td id="grade1"></td>
-            </tr>
-            <tr>
-                <td>Subject 2</td>
-                <td id="grade2"></td>
-            </tr>
-            <tr>
-                <td>Subject 3</td>
-                <td id="grade3"></td>
-            </tr>
-        </table>
-
-        <script>
-            $(document).ready(function() {
-                $.ajax({
-                    url: '/api/grades', // Your API endpoint to retrieve grades
-                    method: 'GET',
-                    success: function(response) {
-                        if (response.success) {
-                            const grades = response.data;
-                            $('#grade1').text(grades.grade1);
-                            $('#grade2').text(grades.grade2);
-                            $('#grade3').text(grades.grade3);
-                        }
-                    },
-                    error: function(error) {
-                        console.log(error);
-                    }
-                });
-            });
-        </script>
+        <div class="content">
+            <table id="grades-table">
+                <tr>
+                    <th>Subject</th>
+                    <th>Grade</th>
+                </tr>
+                <tr>
+                    <td>Subject 1</td>
+                    <td id="grade1"></td>
+                </tr>
+                <tr>
+                    <td>Subject 2</td>
+                    <td id="grade2"></td>
+                </tr>
+                <tr>
+                    <td>Subject 3</td>
+                    <td id="grade3"></td>
+                </tr>
+            </table>
+        </div>
     </div>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            $.ajax({
+                url: '/api/grades', // Your API endpoint to retrieve grades
+                method: 'GET',
+                success: function(response) {
+                    if (response.success) {
+                        const grades = response.data;
+                        $('#grade1').text(grades.grade1);
+                        $('#grade2').text(grades.grade2);
+                        $('#grade3').text(grades.grade3);
+                    }
+                },
+                error: function(error) {
+                    console.log(error);
+                }
+            });
+        });
+    </script>
 </body>
 </html>

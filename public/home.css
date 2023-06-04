@@ -1,0 +1,305 @@
+* {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    text-decoration: none;
+  }
+  body{
+    font-family: 'Montserrat', sans-serif;
+
+  }
+  
+  .bg-img {
+background: url("bg.jpg") no-repeat center center fixed;
+  background-size: cover;
+  height: 100vh;
+  }
+  
+  
+  nav {
+    background: transparent;
+    padding: 10px 10px;
+    animation: slideIn 2s ease-in-out forwards;
+  }
+  
+  nav ul li {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 50px;
+    display: inline-block;
+    animation-timing-function: ease-in;
+    animation-delay: 300ms;
+  }
+  
+  nav ul li a {
+    color: #d3d3d3;
+  }
+  
+  .loginbox {
+    width: 18vw; 
+    height: 30px;
+    border: solid rgba(252, 255, 232, 0.76);
+    position: absolute;
+    top: 12%;
+    background: transparent;
+    display: inline-block;
+    box-shadow: 0 0 45px 0 rgb(227, 229, 204);
+    padding: 0px 5px;
+    display: flex;
+    animation: slideIn 2s ease-in-out forwards;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    left: -20%;
+  }
+  
+  .loginbox .font {
+    text-align: center;
+    font-family: 'Montserrat', sans-serif;
+    color: #d3d3d3;
+    font-size: 1rem;
+    animation: text-load 300ms ease-in 600ms;
+    animation-timing-function: ease-in;
+    animation-delay: 300ms;
+  }
+  
+  .loginbox .font h4 {
+    font-weight: 200px;
+    font-size: 25px;
+    font-family: 'Montserrat', sans-serif;
+    margin: 20px 40px;
+    top: 8%;
+  }
+  
+  .textbox {
+    margin-bottom: 5%;
+    margin-left: 25px;
+    padding: 5px 5px;
+    font-family: 'Montserrat', sans-serif;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #d3d3d3;
+    box-shadow: 0 0 15px 0 rgb(227, 229, 204);
+    position: relative;
+  }
+  
+  .textbox input[type="text"] {
+    width: 100%;
+    height: 100%;
+    border: none;
+    outline: none;
+    font-size: 20px;
+    background-color: #d3d3d3;
+  }
+  
+  .textbox:hover {
+    box-shadow: 0 0 80px 0 #d3d3d3, 0 0 80px 0 #d3d3d3, 0 0 90px 0 #d3d3d3 inset;
+    background-color: #d3d3d3;
+  }
+  
+  .loginbox ul li a {
+    display: inline-block;
+    margin: 0px 15px;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 25px;
+  }
+  
+  .logo {
+    color: #d3d3d3;
+    font-family: monospace;
+    padding: 10px 10px;
+  }
+  
+  button {
+    width: 80px;
+    height: 40px;
+    padding: 10px 10px;
+    border-radius: 2%;
+    background-color: transparent;
+    border: double #d3d3d3 1px;
+    cursor: pointer;
+    color: #d3d3d3;
+    font-weight: 200;
+    font-size: 10px;
+    font-family: 'Montserrat', sans-serif;
+    transition-duration: 0.4s;
+    box-shadow: 0 0 15px 0 white;
+  
+    transform: scale(1.1);
+    margin-left: 10px;
+  }
+  
+  button:hover {
+    background-color: #eeeed0;
+    color: black;
+  }
+  
+  .button:active {
+    background-color: transparent;
+    color: #d3d3d3;
+    box-shadow: 0 0 80px 0 #d3d3d3, 0 0 80px 0 #d3d3d3, 0 0 90px 0 #d3d3d3 inset;
+  }
+  
+  @keyframes slideIn {
+    from {
+      transform: translateX(-100%);
+      opacity: 0;
+    }
+    to {
+      transform: translateY(0%);
+      opacity: 1;
+    }
+  }
+  
+  /* Styles for screens larger than 500px */
+  @media (min-width: 500px) {
+    body {
+      font-size: 10px;
+    }
+  
+    h1 {
+      font-size: 1rem;
+    }
+  
+    .loginbox ul li a {
+      font-size: 35px;
+      padding: 10px 10px;
+      margin: 20px;
+    }
+  
+    .textbox input[type="text"] {
+      font-size: 15px;
+    }
+  
+    .loginbox {
+      width: 550px;
+      height: 550px;
+      margin: 100px;
+    }
+  
+    .textbox {
+      height: 35px;
+      width: 250px;
+    }
+  
+    button {
+      height: 50px;
+      width: 230px;
+    }
+  }
+  
+  /* Styles for screens larger than 1200px */
+  @media (min-width: 1200px) {
+    body {
+      font-size: 10px;
+    }
+  
+    h1 {
+      font-size: 1rem;
+    }
+  
+    .loginbox ul li a {
+      font-size: 20px;
+      padding: 20px 10px;
+    }
+  
+    .textbox input[type="text"] {
+      font-size: 15px;
+    }
+  
+    .loginbox {
+      width: 400px;
+      height: 400px;
+      top: -1.5%;
+      margin-left: 30%;
+    }
+  }
+  
+  input:required {
+    border: 3px solid red;
+  }
+  
+  .font h6 {
+    margin-right: 200px;
+    color: rgb(210, 73, 73);
+    font-size: 15px;
+  }
+  
+  form ul li a h5 {
+    color: #ccc;
+  }
+  
+  .textbox.error input[type="text"],
+  .textbox.error input[type="password"] {
+    border-color: red;
+  }
+  
+  .textbox.error::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    right: 10px;
+    transform: translateY(-50%);
+    width: 10px;
+    height: 10px;
+    background-color: red;
+    border-radius: 50%;
+    background-color: transparent;
+  }
+  
+  .error-message {
+    color: red;
+    font-size: 0.8rem;
+    margin-top: 7px;
+  }
+  
+  .timezone label {
+    color: #ccc;
+    font-size: 20px;
+  }
+  
+  .timezone select {
+    border: black 2px solid;
+    padding: 2px;
+    border-radius: 10%;
+    background-color: #d3d3d3;
+  }
+  
+  .error-message {
+    color: red;
+  }
+  
+  table {
+    border-collapse: collapse;
+    margin: 25px 50px;
+    font-size: 25px;
+    color: #d3d3d3;
+    box-shadow: 0 0 20px 0 #0edaff
+    , 0 0 20px 0#0edaff
+    , 0 0 10px 0 #0edaff
+    inset;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    animation: slideIn 2s ease-in-out forwards;
+  }
+  
+  th,
+  td {
+    padding: 28px;
+    text-align: left;
+    border-bottom: 1px solid #0edaff
+    ;
+    box-shadow: 0 0 2px 0 #0edaff
+    , 0 0 10px 0 #0edaff
+    , 0 0 10px 0#0edaff
+    ;
+  }
+  
+  table:hover {
+    box-shadow: 0 0 120px 0 #d3d3d3, 0 0 130px 0 #0edaff
+    , 0 0 20px 0 #0edaff
+    ;
+  }
+  
+  td:hover {
+    color: aqua;
+  }
+  
