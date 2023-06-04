@@ -19,53 +19,49 @@
     <div class="bg-img">
         <nav>    
             <div class="logo">
-                <span><h1><span>Devops</span></h1></span>
-               
-                
+                <span><h1><span>Devops</span></h1></span>             
             </div>    
         </nav>
         <hr>
-  <h1>Grades</h1>
-  <table id="grades-table">
-    <tr>
-      <th>Subject</th>
-      <th>Grade</th>
-    </tr>
-    <tr>
-      <td>Subject 1</td>
-      <td id="grade1"></td>
-    </tr>
-    <tr>
-      <td>Subject 2</td>
-      <td id="grade2"></td>
-    </tr>
-    <tr>
-      <td>Subject 3</td>
-      <td id="grade3"></td>
-    </tr>
-  </table>
+        <h1>Grades</h1>
+        <table id="grades-table">
+            <tr>
+                <th>Subject</th>
+                <th>Grade</th>
+            </tr>
+            <tr>
+                <td>Subject 1</td>
+                <td id="grade1"></td>
+            </tr>
+            <tr>
+                <td>Subject 2</td>
+                <td id="grade2"></td>
+            </tr>
+            <tr>
+                <td>Subject 3</td>
+                <td id="grade3"></td>
+            </tr>
+        </table>
 
-  <script>
-    $(document).ready(function() {
-      $.ajax({
-        url: '/register', // Your API endpoint to retrieve grades
-        method: 'GET',
-        success: function(response) {
-          if (response.success) {
-            const grades = response.data;
-            const gradesTable = $('#grades-table');
-  
-            const newRow = $('<tr>');
-            newRow.append($('<td>').text(grades.grade1));
-            newRow.append($('<td>').text(grades.grade2));
-            newRow.append($('<td>').text(grades.grade3));
-  
-            gradesTable.append(newRow);
-          }
-        },
-        error: function(error) {
-          console.log(error);
-        }
-      });
-    });
-  </script>
+        <script>
+            $(document).ready(function() {
+                $.ajax({
+                    url: '/api/grades', // Your API endpoint to retrieve grades
+                    method: 'GET',
+                    success: function(response) {
+                        if (response.success) {
+                            const grades = response.data;
+                            $('#grade1').text(grades.grade1);
+                            $('#grade2').text(grades.grade2);
+                            $('#grade3').text(grades.grade3);
+                        }
+                    },
+                    error: function(error) {
+                        console.log(error);
+                    }
+                });
+            });
+        </script>
+    </div>
+</body>
+</html>
