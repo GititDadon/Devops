@@ -276,3 +276,25 @@
   .error-message {
     color: red;
   }
+  table {
+    border-collapse: collapse;
+    margin:150px 150px;
+    font-size: 50px;
+    color:#d3d3d3;
+    box-shadow: 0 0 20px 0 #d3d3d3,
+    0 0 20px 0 #d3d3d3 , 0 0 20px 0 #d3d3d3 inset;
+    font-family:Georgia, 'Times New Roman', Times, serif;
+    animation: slideIn 2s ease-in-out forwards;
+
+
+
+
+  }
+
+  th, td {
+    padding: 28px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+    box-shadow: 0 0 2px 0 #d3d3d3,
+    0 0 10px 0 #d3d3d3 , 0 0 10px 0 #d3d3d3 inset;
+  }

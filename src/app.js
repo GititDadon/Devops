@@ -41,9 +41,7 @@ app.post('/register', async (req, res) => {
      grade3,
       level: 'starter',
     });
-    newUser.save();
-    res.status(201).json({ success: true, data: newUser });
-   // res.redirect('/home');
+   res.redirect('/home');
   } catch (err) {
     res.status(400).json({ success: false, error: err.message });
   }
