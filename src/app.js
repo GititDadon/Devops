@@ -16,17 +16,23 @@ require('../src/db');
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
 
-
+app.get('/')
 app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(expressLayouts);
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.use('/', indexRouter);
-app.use('/register', registerRouter);
+// app.use('/', indexRouter);
+// app.use('/register', registerRouter);
 
+app.get('/', function (req, res, next) {
 
+    res.render('register', {
+      layout: true,
+      page: 'register'
+    });
+  });
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
   next(createError(404));
