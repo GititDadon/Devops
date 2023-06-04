@@ -26,7 +26,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 // app.use('/', indexRouter);
 // app.use('/register', registerRouter);
 
-app.get('/', function (req, res, next) {
+app.get('/register', function (req, res, next) {
 
     res.render('register', {
       layout: true,
