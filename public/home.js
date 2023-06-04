@@ -1,5 +1,5 @@
 // Fetch user data from the server 
-fetch('/register')
+fetch('/grades')
   .then(response => response.json())
   .then(data => {
     // Extract the grades from the user data
