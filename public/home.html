@@ -44,3 +44,26 @@
   </table>
 
   <script>
+    $(document).ready(function() {
+      $.ajax({
+        url: '/api/grades', // Your API endpoint to retrieve grades
+        method: 'GET',
+        success: function(response) {
+          if (response.success) {
+            const grades = response.data;
+            const gradesTable = $('#grades-table');
+  
+            const newRow = $('<tr>');
+            newRow.append($('<td>').text(grades.grade1));
+            newRow.append($('<td>').text(grades.grade2));
+            newRow.append($('<td>').text(grades.grade3));
+  
+            gradesTable.append(newRow);
+          }
+        },
+        error: function(error) {
+          console.log(error);
+        }
+      });
+    });
+  </script>

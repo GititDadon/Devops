@@ -41,21 +41,7 @@ app.post('/register', async (req, res) => {
      grade3,
       level: 'starter',
     });
-     // Insert the grades into the table
-     const gradesTable = document.getElementById('grades-table');
-     const newRow = gradesTable.insertRow();
-     
-     const grade1Cell = newRow.insertCell();
-     grade1Cell.textContent = newUser.grade1;
-     
-     const grade2Cell = newRow.insertCell();
-     grade2Cell.textContent = newUser.grade2;
-     
-     const grade3Cell = newRow.insertCell();
-     grade3Cell.textContent = newUser.grade3;
-    res.redirect('/home.html');
-    module.exports=newUser;
-
+    res.redirect("home.html");
   } catch (err) {
     res.status(400).json({ success: false, error: err.message });
   }
