@@ -38,6 +38,7 @@ describe('Test suite 2:', () => {
     };
 
     const res = await request(app).post('/register').send(userData);
+    console.log(userData);
     expect(res.statusCode).toEqual(successCode);
   });
 
