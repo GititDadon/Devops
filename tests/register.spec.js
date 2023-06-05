@@ -1,6 +1,6 @@
 const request = require('supertest');
 const assert = require('assert');
-const { app } = require('../src/app');
+const { app } = require('../src/app.js');
 
 describe('Test suite 1:', () => {
   it('test 1:', async () => {
