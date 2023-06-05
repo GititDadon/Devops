@@ -62,21 +62,23 @@ app.post('/register', async (req, res) => {
 app.get('/api/grades', async (req, res) => {
   try {
     // Retrieve the grades from the database
-    const user = await User.findOne()
-      .sort({ createdAt: -1 })
-      .limit(1);
+    const user = await User.findOne().sort({ createdAt: -1 }).limit(1);
 
     // Check if the user and grades exist
     if (!user || !user.grades) {
       return res.status(404).json({ success: false, message: 'Grades not found' });
     }
 
+    // Extract the grades from the user object
+    const { grade1, grade2, grade3 } = user.grades;
+
     // Send the grades as a JSON response
-    res.json({ success: true, data: user.grades });
+    res.json({ success: true, data: { grade1, grade2, grade3 } });
   } catch (err) {
     res.status(500).json({ success: false, error: err.message });
   }
 });
+
 
 if (process.env.NODE_ENV !== 'test') {
   app.listen(port, () => {
