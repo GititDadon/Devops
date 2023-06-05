@@ -14,6 +14,7 @@ describe('Test suite 1:', () => {
     expect(res.statusCode).to.equal(404);
   });
 });
+
 describe('Test suite 2:', function() {
   var successCode = 302;
   let server;
@@ -50,6 +51,7 @@ describe('Test suite 2:', function() {
       .end(function(err, res) {
         if (err) return done(err);
         done();
+        process.exit(); // Terminate the batch job after the test is done executing
       });
   });
 
@@ -65,6 +67,9 @@ describe('Test suite 2:', function() {
     return request(app)
       .post('/register')
       .send(userData)
-      .expect(400);
+      .expect(400)
+      .then(() => {
+        process.exit(); // Terminate the batch job after the test is done executing
+      });
   });
 });
