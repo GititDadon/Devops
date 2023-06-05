@@ -40,11 +40,11 @@ app.post('/register', async (req, res) => {
   if (!isIdValid(id)) {
     return res.status(400).json({ success: false, error: 'Invalid ID' });
   }
-
+/*
   if (!areGradesValid(grades)) {
     return res.status(400).json({ success: false, error: 'Invalid grades' });
   }
-
+*/
   try {
     const newUser = await User.create({
       name,
