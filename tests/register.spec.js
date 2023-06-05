@@ -1,5 +1,6 @@
 const request = require('supertest');
 const { app } = require('../src/app');
+const mongoose = require('mongoose');
 
 describe('Test suite 1:', () => {
   test('test 1:', async () => {
@@ -14,8 +15,23 @@ describe('Test suite 1:', () => {
 });
 
 describe('Test suite 2:', () => {
+  var successCode = 302;
+  let server;
 
-  var successCode=302;
+  beforeAll((done) => {
+    server = app.listen(0, () => {
+      const port = server.address().port;
+      process.env.PORT = port.toString();
+      done();
+    });
+  });
+
+  afterAll((done) => {
+    server.close(() => {
+      mongoose.disconnect(done); // Close the MongoDB connection
+    });
+  });
+
   test('test 2: Register user', async () => {
     const userData = {
       name: 'Gitit Dadon',
@@ -26,7 +42,6 @@ describe('Test suite 2:', () => {
     };
 
     const res = await request(app).post('/register').send(userData);
-    console.log(userData);
     expect(res.statusCode).toEqual(successCode);
   });
 
@@ -42,18 +57,4 @@ describe('Test suite 2:', () => {
     const res = await request(app).post('/register').send(userData);
     expect(res.statusCode).toEqual(400);
   });
-});
-
-let server;
-
-beforeAll((done) => {
-  server = app.listen(0, () => {
-    const port = server.address().port;
-    process.env.PORT = port.toString();
-    done();
-  });
-});
-
-afterAll((done) => {
-  server.close(done);
 });
