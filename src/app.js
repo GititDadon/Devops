@@ -73,7 +73,7 @@ app.get('/api/grades', async (req, res) => {
 
     // Extract the grades from the user object
     const  grade1=user.grade1;
-    const grade2=user.grade2
+    const grade2=user.grade2;
     const  grade3= user.grade3;
 
     // Send the grades as a JSON response
