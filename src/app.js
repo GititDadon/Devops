@@ -45,7 +45,8 @@ app.post('/register', async (req, res) => {
     });
     res.redirect('/home.html');
   } catch (err) {
-    res.status(400).json({ success: false, error: err.message });
+    res.redirect('/404.html');
+    res.status(400);
   }
 });
 //gffdg
