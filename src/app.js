@@ -26,13 +26,16 @@ app.post('/register', async (req, res) => {
   const grades = [grade1, grade2, grade3];
   // Perform input validation
   if (!isFullNameValid(name)) {
-    return res.status(400).json({ success: false, error: 'Invalid full name' });
+    res.redirect('/404.html');
+    return res.status(400);
   }
   if (!isIdValid(id)) {
-    return res.status(400).json({ success: false, error: 'Invalid ID' });
+    res.redirect('/404.html');
+    return res.status(400);
   }
   if (!areGradesValid(grades)) {
-    return res.status(400).json({ success: false, error: 'Invalid grades' });
+    res.redirect('/404.html');
+    return res.status(400);
   }
   try {
      await User.create({
