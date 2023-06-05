@@ -24,7 +24,7 @@ app.get('/home.css', (req, res) => {
 app.post('/register', async (req, res) => {
   const { name, id, grade1, grade2, grade3 } = req.body;
   const grades = [grade1, grade2, grade3];
-  // Perform input validation
+  // Perform input validation and redirection
   if (!isFullNameValid(name)) {
     res.redirect('/404.html');
     return res.status(400);
