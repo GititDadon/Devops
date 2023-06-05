@@ -1,37 +1,22 @@
 const request = require('supertest');
-const assert = require('assert');
-const { app } = require('../src/app.js');
+const { app } = require('../src/app');
 
 describe('Test suite 1:', () => {
-  it('test 1:', async () => {
+  test('test 1:', async () => {
     const res = await request(app).get('/');
-    assert.strictEqual(res.statusCode, 200);
+    expect(res.statusCode).toEqual(200);
   });
 
-  it('test 2:', async () => {
+  test('test 2:', async () => {
     const res = await request(app).get('/1234');
-    assert.strictEqual(res.statusCode, 404);
+    expect(res.statusCode).toEqual(404);
   });
 });
 
 describe('Test suite 2:', () => {
-  let server;
 
-  before((done) => {
-    server = app.listen(0, () => {
-      const port = server.address().port;
-      process.env.PORT = port.toString();
-      done();
-    });
-  });
-
-  after((done) => {
-    server.close(done);
-  });
-
-  const successCode = 302;
-
-  it('test 2: Register user', async () => {
+  var successCode=302;
+  test('test 2: Register user', async () => {
     const userData = {
       name: 'Gitit Dadon',
       id: '123456789',
@@ -42,10 +27,10 @@ describe('Test suite 2:', () => {
 
     const res = await request(app).post('/register').send(userData);
     console.log(userData);
-    assert.strictEqual(res.statusCode, successCode);
+    expect(res.statusCode).toEqual(successCode);
   });
 
-  it('test 3: Invalid user registration', async () => {
+  test('test 3: Invalid user registration', async () => {
     const userData = {
       name: 'Gitit667Dadon',
       id: '123456789!!!',
@@ -55,6 +40,20 @@ describe('Test suite 2:', () => {
     };
 
     const res = await request(app).post('/register').send(userData);
-    assert.strictEqual(res.statusCode, 400);
+    expect(res.statusCode).toEqual(400);
   });
+});
+
+let server;
+
+beforeAll((done) => {
+  server = app.listen(0, () => {
+    const port = server.address().port;
+    process.env.PORT = port.toString();
+    done();
+  });
+});
+
+afterAll((done) => {
+  server.close(done);
 });
