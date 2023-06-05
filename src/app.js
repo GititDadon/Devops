@@ -59,7 +59,7 @@ app.post('/register', async (req, res) => {
     res.status(400).json({ success: false, error: err.message });
   }
 });
-
+//gffdg
 // Route to retrieve grades
 app.get('/api/grades', async (req, res) => {
   try {
