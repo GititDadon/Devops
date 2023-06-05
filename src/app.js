@@ -66,10 +66,6 @@ app.get('/api/grades', async (req, res) => {
     // Retrieve the grades from the database
     const user = await User.findOne().sort({ createdAt: -1 }).limit(1);
 
-    // Check if the user and grades exist
-    if (!user || !user.grades) {
-      return res.status(404).json({ success: false, message: 'Grades not found' });
-    }
 
     // Construct the grades object
     const grades = {
