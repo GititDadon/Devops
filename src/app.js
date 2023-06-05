@@ -49,7 +49,9 @@ app.post('/register', async (req, res) => {
     const newUser = await User.create({
       name,
       id,
-      grades,
+      grade1,
+      grade2,
+      grade3,
       level: 'starter',
     });
     res.redirect('/home.html');
