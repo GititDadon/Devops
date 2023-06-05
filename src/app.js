@@ -85,10 +85,10 @@ app.get('/api/grades', async (req, res) => {
 });
 
 
-if (process.env.NODE_ENV !== 'test') {
+//if (process.env.NODE_ENV !== 'test') {
   app.listen(port, () => {
     console.log(`Listening on port ${port}`);
   });
-}
+//}
 
 module.exports = { app };
