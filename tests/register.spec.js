@@ -1,22 +1,23 @@
 const request = require('supertest');
+const assert = require('assert');
 const { app } = require('../src/app');
 
 describe('Test suite 1:', () => {
-  test('test 1:', async () => {
+  it('test 1:', async () => {
     const res = await request(app).get('/');
-    expect(res.statusCode).toEqual(200);
+    assert.strictEqual(res.statusCode, 200);
   });
 
-  test('test 2:', async () => {
+  it('test 2:', async () => {
     const res = await request(app).get('/1234');
-    expect(res.statusCode).toEqual(404);
+    assert.strictEqual(res.statusCode, 404);
   });
 });
 
 describe('Test suite 2:', () => {
   let server;
 
-  beforeAll((done) => {
+  before((done) => {
     server = app.listen(0, () => {
       const port = server.address().port;
       process.env.PORT = port.toString();
@@ -24,11 +25,13 @@ describe('Test suite 2:', () => {
     });
   });
 
-  afterAll((done) => {
+  after((done) => {
     server.close(done);
   });
-  var successCode=302;
-  test('test 2: Register user', async () => {
+
+  const successCode = 302;
+
+  it('test 2: Register user', async () => {
     const userData = {
       name: 'Gitit Dadon',
       id: '123456789',
@@ -39,10 +42,10 @@ describe('Test suite 2:', () => {
 
     const res = await request(app).post('/register').send(userData);
     console.log(userData);
-    expect(res.statusCode).toEqual(successCode);
+    assert.strictEqual(res.statusCode, successCode);
   });
 
-  test('test 3: Invalid user registration', async () => {
+  it('test 3: Invalid user registration', async () => {
     const userData = {
       name: 'Gitit667Dadon',
       id: '123456789!!!',
@@ -52,6 +55,6 @@ describe('Test suite 2:', () => {
     };
 
     const res = await request(app).post('/register').send(userData);
-    expect(res.statusCode).toEqual(400);
+    assert.strictEqual(res.statusCode, 400);
   });
 });
