@@ -1,5 +1,6 @@
 const request = require('supertest');
-const { app, server } = require('../src/app');
+const { app } = require('../src/app');
+
 describe('Test suite 1:', () => {
   test('test 1:', async () => {
     const res = await request(app).get('/');
@@ -11,17 +12,22 @@ describe('Test suite 1:', () => {
     expect(res.statusCode).toEqual(404);
   });
 });
-var succesCode=400;
 
 describe('Test suite 2:', () => {
-  beforeAll(() => {
-    jest.setTimeout(30000); // Set the timeout value to 30000ms (30 seconds) for the entire suite
+  let server;
+
+  beforeAll((done) => {
+    server = app.listen(0, () => {
+      const port = server.address().port;
+      process.env.PORT = port.toString();
+      done();
+    });
   });
 
   afterAll((done) => {
     server.close(done);
   });
-
+  var successCode=302;
   test('test 2: Register user', async () => {
     const userData = {
       name: 'Gitit Dadon',
@@ -32,12 +38,10 @@ describe('Test suite 2:', () => {
     };
 
     const res = await request(app).post('/register').send(userData);
-    expect(res.statusCode).toEqual(succesCode);
-    console.log(res.body.error);
-
+    expect(res.statusCode).toEqual(successCode);
   });
 
-  test('test 2: Register user', async () => {
+  test('test 3: Invalid user registration', async () => {
     const userData = {
       name: 'Gitit667Dadon',
       id: '123456789!!!',

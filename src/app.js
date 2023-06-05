@@ -29,7 +29,8 @@ app.get('/home.css', (req, res) => {
 
 // Route for registering a new user
 app.post('/register', async (req, res) => {
-  const { name, id, grades } = req.body;
+  const { name, id, grade1, grade2, grade3 } = req.body;
+  const grades = [grade1, grade2, grade3];
 
   // Perform input validation
   if (!isFullNameValid(name)) {
@@ -51,7 +52,7 @@ app.post('/register', async (req, res) => {
       grades,
       level: 'starter',
     });
-    res.redirect('home.html');
+    res.redirect('/home.html');
   } catch (err) {
     res.status(400).json({ success: false, error: err.message });
   }
@@ -77,8 +78,10 @@ app.get('/api/grades', async (req, res) => {
   }
 });
 
-const server = app.listen(port, () => {
-  console.log(`Listening on port ${port}`);
-});
+if (process.env.NODE_ENV !== 'test') {
+  app.listen(port, () => {
+    console.log(`Listening on port ${port}`);
+  });
+}
 
-module.exports = { app, server };
+module.exports = { app };
