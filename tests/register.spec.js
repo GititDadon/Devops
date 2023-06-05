@@ -30,10 +30,11 @@ describe('Test suite 2:', function() {
   after(function(done) {
     server.close(function() {
       mongoose.disconnect(done);
+      process.exit();
     });
   });
 
-  it('test 1: Register user', function(done) {
+  it('test 1: Register user with valid data', function(done) {
     this.timeout(5000); // Increase the timeout to 5000ms (5 seconds)
 
     const userData = {
@@ -51,25 +52,63 @@ describe('Test suite 2:', function() {
       .end(function(err, res) {
         if (err) return done(err);
         done();
-        process.exit(); // Terminate the batch job after the test is done executing
       });
   });
 
-  it('test 2: Invalid user registration', function() {
+  it('test 2: Invalid user name', function(done) {
     const userData = {
-      name: 'Gitit667Dadon',
-      id: '123456789!!!',
-      grade1: 990,
+      name: 'Gitit667Dadon!!!',
+      id: '123456789',
+      grade1: 99,
       grade2: 90,
-      grade3: -95,
+      grade3: 95,
     };
 
-    return request(app)
+    request(app)
       .post('/register')
       .send(userData)
       .expect(400)
-      .then(() => {
-        process.exit(); // Terminate the batch job after the test is done executing
+      .end(function(err, res) {
+        if (err) return done(err);
+        done();
+      });
+  });
+
+  it('test 3: Invalid user ID', function(done) {
+    const userData = {
+      name: 'Gitit Dadon',
+      id: '123456789!!!',
+      grade1: 99,
+      grade2: 90,
+      grade3: 95,
+    };
+
+    request(app)
+      .post('/register')
+      .send(userData)
+      .expect(400)
+      .end(function(err, res) {
+        if (err) return done(err);
+        done();
+      });
+  });
+
+  it('test 4: Invalid user grade', function(done) {
+    const userData = {
+      name: 'Gitit Dadon',
+      id: '123456789',
+      grade1: 99,
+      grade2: 1000,
+      grade3: 95,
+    };
+
+    request(app)
+      .post('/register')
+      .send(userData)
+      .expect(400)
+      .end(function(err, res) {
+        if (err) return done(err);
+        done();
       });
   });
 });
