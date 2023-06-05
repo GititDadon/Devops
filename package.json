@@ -4,7 +4,11 @@
   "description": "Gitit And Shilat Project",
   "main": "app.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "mocha tests/*.spec.js --color"
+    "dev": "nodemon src/index.js",
+    "lint": "eslint src/* --color",
+    "start": "node src/index.js"
+ 
   },
   "keywords": [],
   "author": "",
@@ -29,6 +33,7 @@
     "@types/chai": "^4.3.5",
     "@types/mocha": "^10.0.1",
     "chai": "^4.3.7",
+    "eslint": "^8.42.0",
     "mocha": "^10.2.0"
   }
 }
