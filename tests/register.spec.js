@@ -1,38 +1,40 @@
 const request = require('supertest');
 const { app } = require('../src/app');
 const mongoose = require('mongoose');
+const { expect } = require('chai');
 
 describe('Test suite 1:', () => {
-  test('test 1:', async () => {
+  it('test 1: Check home route', async () => {
     const res = await request(app).get('/');
-    expect(res.statusCode).toEqual(200);
+    expect(res.statusCode).to.equal(200);
   });
 
-  test('test 2:', async () => {
+  it('test 2: Check non-existent route', async () => {
     const res = await request(app).get('/1234');
-    expect(res.statusCode).toEqual(404);
+    expect(res.statusCode).to.equal(404);
   });
 });
-
-describe('Test suite 2:', () => {
+describe('Test suite 2:', function() {
   var successCode = 302;
   let server;
 
-  beforeAll((done) => {
-    server = app.listen(0, () => {
+  before(function(done) {
+    server = app.listen(0, function() {
       const port = server.address().port;
       process.env.PORT = port.toString();
       done();
     });
   });
 
-  afterAll((done) => {
-    server.close(() => {
-      mongoose.disconnect(done); // Close the MongoDB connection
+  after(function(done) {
+    server.close(function() {
+      mongoose.disconnect(done);
     });
   });
 
-  test('test 2: Register user', async () => {
+  it('test 1: Register user', function(done) {
+    this.timeout(5000); // Increase the timeout to 5000ms (5 seconds)
+
     const userData = {
       name: 'Gitit Dadon',
       id: '123456789',
@@ -41,11 +43,17 @@ describe('Test suite 2:', () => {
       grade3: 95,
     };
 
-    const res = await request(app).post('/register').send(userData);
-    expect(res.statusCode).toEqual(successCode);
+    request(app)
+      .post('/register')
+      .send(userData)
+      .expect(successCode)
+      .end(function(err, res) {
+        if (err) return done(err);
+        done();
+      });
   });
 
-  test('test 3: Invalid user registration', async () => {
+  it('test 2: Invalid user registration', function() {
     const userData = {
       name: 'Gitit667Dadon',
       id: '123456789!!!',
@@ -54,7 +62,9 @@ describe('Test suite 2:', () => {
       grade3: -95,
     };
 
-    const res = await request(app).post('/register').send(userData);
-    expect(res.statusCode).toEqual(400);
+    return request(app)
+      .post('/register')
+      .send(userData)
+      .expect(400);
   });
 });
